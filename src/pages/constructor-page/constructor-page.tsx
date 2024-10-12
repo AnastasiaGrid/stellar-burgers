@@ -1,4 +1,4 @@
-import { useSelector } from '../../services/store';
+import { AppDispatch, RootState } from '../../services/store';
 
 import styles from './constructor-page.module.css';
 
@@ -6,11 +6,14 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
+import { selectIsIngredientsLoading } from '../../slices/ingredientsSlice';
+import { useSelector } from 'react-redux';
+import { Outlet, useLocation } from 'react-router-dom';
 
 export const ConstructorPage: FC = () => {
-  /** TODO: взять переменную из стора */
-  const isIngredientsLoading = false;
-
+  /** TOD: взять переменную из стора */
+  const isIngredientsLoading = useSelector(selectIsIngredientsLoading);
+  const location = useLocation();
   return (
     <>
       {isIngredientsLoading ? (
@@ -28,6 +31,7 @@ export const ConstructorPage: FC = () => {
           </div>
         </main>
       )}
+      <Outlet />
     </>
   );
 };

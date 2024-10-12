@@ -14,7 +14,8 @@ export const LoginUI: FC<LoginUIProps> = ({
   errorText,
   handleSubmit,
   password,
-  setPassword
+  setPassword,
+  loading
 }) => (
   <main className={styles.container}>
     <div className={`pt-6 ${styles.wrapCenter}`}>
@@ -45,7 +46,12 @@ export const LoginUI: FC<LoginUIProps> = ({
             />
           </div>
           <div className={`pb-6 ${styles.button}`}>
-            <Button type='primary' size='medium' htmlType='submit'>
+            <Button
+              disabled={loading}
+              type='primary'
+              size='medium'
+              htmlType='submit'
+            >
               Войти
             </Button>
           </div>

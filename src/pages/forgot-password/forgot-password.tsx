@@ -14,12 +14,14 @@ export const ForgotPassword: FC = () => {
     e.preventDefault();
 
     setError(null);
-    forgotPasswordApi({ email })
-      .then(() => {
-        localStorage.setItem('resetPassword', 'true');
-        navigate('/reset-password', { replace: true });
-      })
-      .catch((err) => setError(err));
+    if (email) {
+      forgotPasswordApi({ email })
+        .then(() => {
+          localStorage.setItem('resetPassword', 'true');
+          navigate('/reset-password', { replace: true });
+        })
+        .catch((err) => setError(err));
+    } else alert('Введите email');
   };
 
   return (
