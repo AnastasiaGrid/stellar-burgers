@@ -23,7 +23,6 @@ export const Login: FC = () => {
       localStorage.setItem('refreshToken', result.refreshToken);
       setCookie('accessToken', result.accessToken);
       dispatch(addUserData(result.user));
-      navigate('/profile');
     } catch (e: any) {
       setError(e.message);
     } finally {

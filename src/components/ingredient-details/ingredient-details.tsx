@@ -1,11 +1,9 @@
 import { FC } from 'react';
 import { Preloader } from '../ui/preloader';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
-import { RootState } from 'src/services/store';
 import { useSelector } from 'react-redux';
 import { selectIngredients } from '../../slices/ingredientsSlice';
-import { useLocation, useParams } from 'react-router-dom';
-import { log } from 'console';
+import { useParams } from 'react-router-dom';
 
 export const IngredientDetails: FC = () => {
   const ingredients = useSelector(selectIngredients);

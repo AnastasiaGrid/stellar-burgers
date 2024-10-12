@@ -3,20 +3,19 @@ import { useInView } from 'react-intersection-observer';
 
 import { TTabMode } from '@utils-types';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
-import {
-  selectFilterIngredientBun,
-  selectFilterIngredientMain,
-  selectFilterIngredientSauce
-} from '../../slices/ingredientsSlice';
+import { selectIngredients } from '../../slices/ingredientsSlice';
 import { useSelector } from 'react-redux';
 
 export const BurgerIngredients: FC = () => {
-  /** TOD: взять переменные из стора */
-  const buns = useSelector(selectFilterIngredientBun);
-  const mains = useSelector(selectFilterIngredientMain);
-  const sauces = useSelector(selectFilterIngredientSauce);
-
-  // ПЕРЕПИСАТЬ ПОВТОРЯЮЩИЕСЯ ФИЛЬТРЫ В ОДИН СЕЛЕКТОР?
+  const buns = useSelector(selectIngredients).filter(
+    (item) => item.type === 'bun'
+  );
+  const mains = useSelector(selectIngredients).filter(
+    (item) => item.type === 'main'
+  );
+  const sauces = useSelector(selectIngredients).filter(
+    (item) => item.type === 'sauce'
+  );
 
   const [currentTab, setCurrentTab] = useState<TTabMode>('bun');
   const titleBunRef = useRef<HTMLHeadingElement>(null);

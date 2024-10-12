@@ -30,7 +30,7 @@ export const ProtectedRoute = ({
     return <Navigate replace to='/login' />;
   }
   if (onlyUnAuth && isAuthentication) {
-    return <Navigate to='/profile' />;
+    return <Navigate to='/' />;
   }
   return children;
 };

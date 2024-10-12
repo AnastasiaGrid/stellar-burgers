@@ -32,15 +32,8 @@ const ingredientsSlice = createSlice({
   reducers: {},
   selectors: {
     selectIsIngredientsLoading: (sliceState) => sliceState.isIngredientsLoading,
-    selectIngredients: (sliceState) => sliceState.ingredients,
-    selectFilterIngredientBun: (sliceState) =>
-      sliceState.ingredients.filter((item) => item.type === 'bun'),
-    selectFilterIngredientMain: (sliceState) =>
-      sliceState.ingredients.filter((item) => item.type === 'main'),
-    selectFilterIngredientSauce: (sliceState) =>
-      sliceState.ingredients.filter((item) => item.type === 'sauce')
+    selectIngredients: (sliceState) => sliceState.ingredients
   },
-  //МОЖЕТ МОЖНО СДЕЛАТЬ ОЛИН СЕЛЕКТОР И ЧЕРЕЗ switch case?
   extraReducers: (builder) => {
     builder
       .addCase(getIngredientsApiThunk.pending, (state) => {
@@ -56,10 +49,5 @@ const ingredientsSlice = createSlice({
   }
 });
 export default ingredientsSlice.reducer;
-export const {
-  selectIsIngredientsLoading,
-  selectIngredients,
-  selectFilterIngredientBun,
-  selectFilterIngredientMain,
-  selectFilterIngredientSauce
-} = ingredientsSlice.selectors;
+export const { selectIsIngredientsLoading, selectIngredients } =
+  ingredientsSlice.selectors;
