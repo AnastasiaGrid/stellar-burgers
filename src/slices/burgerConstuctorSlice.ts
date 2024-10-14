@@ -1,10 +1,10 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { TIngredient, TOrder } from '@utils-types';
+import { TConstructorIngredient, TIngredient } from '@utils-types';
 
 interface IInitialState {
   constructorItems: {
-    bun: TIngredient | null;
-    ingredients: TIngredient[];
+    bun: TConstructorIngredient | null;
+    ingredients: TConstructorIngredient[];
   };
 }
 
@@ -22,7 +22,10 @@ const burgerConstructorSlice = createSlice({
     selectConstructorItem: (sliceState) => sliceState.constructorItems
   },
   reducers: {
-    addConstructorItem: (state, action: PayloadAction<TIngredient>) => {
+    addConstructorItem: (
+      state,
+      action: PayloadAction<TConstructorIngredient>
+    ) => {
       switch (action.payload.type) {
         case 'bun': {
           state.constructorItems.bun = action.payload;

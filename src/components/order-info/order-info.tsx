@@ -2,9 +2,7 @@ import { FC, useEffect, useMemo } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
-import { AppDispatch, RootState } from 'src/services/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIngredientsApiThunk } from '../../slices/ingredientsSlice';
+import { useSelector } from 'react-redux';
 import { selectIngredients } from '../../slices/ingredientsSlice';
 import { selectOrders } from '../../slices/feedSlice';
 import { useParams } from 'react-router-dom';
@@ -15,11 +13,6 @@ export const OrderInfo: FC = () => {
   const orderData = orders.find((item) => item.number.toString() == number);
 
   const ingredients = useSelector(selectIngredients);
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(getIngredientsApiThunk());
-  }, [dispatch]);
 
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {

@@ -27,6 +27,7 @@ import { AppDispatch } from 'src/services/store';
 import { getFeedsApiThunk } from '../../slices/feedSlice';
 import { getIngredientsApiThunk } from '../../slices/ingredientsSlice';
 import { getUserApiThunk } from '../../slices/userSlice';
+import { Wrapper } from '../wrapper/wrapper';
 
 const App = () => {
   const profileMatch = useMatch('/profile/orders/:number')?.params.number;
@@ -54,9 +55,9 @@ const App = () => {
         <Route
           path='/ingredients/:id'
           element={
-            <div className={styles.center}>
+            <Wrapper title={'Детали ингредиента'}>
               <IngredientDetails />
-            </div>
+            </Wrapper>
           }
         />
 
@@ -97,9 +98,9 @@ const App = () => {
         <Route
           path='feed/:number'
           element={
-            <div className={styles.center}>
+            <Wrapper title={`#${orderNumber && orderNumber.padStart(6, '0')}`}>
               <OrderInfo />
-            </div>
+            </Wrapper>
           }
         />
 
@@ -122,9 +123,9 @@ const App = () => {
         <Route
           path='profile/orders/:number'
           element={
-            <div className={styles.center}>
+            <Wrapper title={'Информация по заказу'}>
               <OrderInfo />
-            </div>
+            </Wrapper>
           }
         />
         <Route path='*' element={<NotFound404 />} />

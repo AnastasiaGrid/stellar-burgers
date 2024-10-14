@@ -10,6 +10,7 @@ import { Outlet } from 'react-router-dom';
 
 export const ProfileOrders: FC = () => {
   const [orders, setOrders] = useState<TOrder[]>([]);
+
   useEffect(() => {
     let mount = true;
     async function getOrders() {

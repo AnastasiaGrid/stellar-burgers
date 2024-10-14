@@ -5,6 +5,7 @@ import { BurgerIngredientUI } from '@ui';
 import { TBurgerIngredientProps } from './type';
 import { useDispatch } from 'react-redux';
 import { addConstructorItem } from '../../slices/burgerConstuctorSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
   ({ ingredient, count }) => {
@@ -12,7 +13,8 @@ export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
 
     const dispatch = useDispatch();
     const handleAdd = () => {
-      dispatch(addConstructorItem(ingredient));
+      const id = nanoid();
+      dispatch(addConstructorItem({ ...ingredient, id }));
     };
 
     return (
