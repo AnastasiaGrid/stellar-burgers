@@ -9,6 +9,8 @@ import styles from './order-card.module.css';
 
 import { OrderCardUIProps } from './type';
 import { OrderStatus } from '@components';
+import { log } from 'console';
+import { useDispatch } from 'react-redux';
 
 export const OrderCardUI: FC<OrderCardUIProps> = memo(
   ({ orderInfo, maxIngredients, locationState }) => (

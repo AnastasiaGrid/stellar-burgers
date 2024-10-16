@@ -87,6 +87,7 @@ export const getFeedsApi = () =>
       return Promise.reject(data);
     });
 
+// история заказов мои личные
 export const getOrdersApi = () =>
   fetchWithRefresh<TFeedsResponse>(`${URL}/orders`, {
     method: 'GET',
