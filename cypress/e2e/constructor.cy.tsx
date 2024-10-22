@@ -70,7 +70,25 @@ describe('добавление ингредиентов в конструкто�
 });
 describe('работа модального окна', () => {
   it('открытие модального окна', () => {
-    cy.get('[data-testid="ingedient-1"]');
-    // cy.get('[data-test-id="modal-ingredient"]');
+    cy.get(`${testId('ingredient-1')}`).click();
+    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+  });
+  it('закрытие модального окна по клику на крестик', () => {
+    cy.get(`${testId('ingredient-1')}`).click();
+    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get(`${testId('modal-ingredient')} button`).click();
+    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+  });
+  it('закрытие модального окна по клику на оверлей', () => {
+    cy.get(`${testId('ingredient-1')}`).click();
+    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get(`${testId('modal-overlay')}`).click({ force: true });
+    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+  });
+  it('закрытие модального окна по клику на ESC', () => {
+    cy.get(`${testId('ingredient-1')}`).click();
+    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get('body').type('{esc}');
+    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
   });
 });
