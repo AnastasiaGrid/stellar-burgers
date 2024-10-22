@@ -1,6 +1,7 @@
 {
   "globals": {
-    "cy": "readonly"
+    "cy": "readonly",
+    "assert": "readonly"
   },
   "plugins": ["cypress"],
   "extends": ["plugin:cypress/recommended"]

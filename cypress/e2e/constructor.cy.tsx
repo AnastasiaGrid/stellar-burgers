@@ -1,6 +1,7 @@
 import { reqPath } from './utils';
 import { ConstructorPage } from '@pages';
 import ingredientsMockData from '../fixtures/ingredients.json';
+import * as assert from 'node:assert';
 
 const testId = (id: string) => `[data-testid="${id}"]`;
 
@@ -90,5 +91,18 @@ describe('работа модального окна', () => {
     cy.get(`${testId('modal-ingredient')}`).should('be.visible');
     cy.get('body').type('{esc}');
     cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+  });
+});
+
+describe('подстановка токена', () => {
+  it('проверка авторизации по токену из куки', () => {
+    cy.setCookie('accessToken', 'my_token');
+    cy.intercept('GET', reqPath('/auth/user'), {
+      fixture: 'user-success-true.json'
+    }).as('getUser');
+    cy.visit('/');
+    cy.wait('@getUser')
+      .its('request.headers')
+      .should('have.property', 'authorization', 'my_token');
   });
 });

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { reqPath } from "cypress/e2e/utils";
+import { reqPath } from 'cypress/e2e/utils';
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -40,9 +40,10 @@ import { reqPath } from "cypress/e2e/utils";
 // }
 
 beforeEach(() => {
-    cy.intercept('GET', reqPath('ingredients'), {
-        fixture: 'ingredients.json'
-    }).as('getIngredients');
-    cy.visit('/');
-    cy.wait('@getIngredients');
-}); 
+  //получение ингредиентов
+  cy.intercept('GET', reqPath('ingredients'), {
+    fixture: 'ingredients.json'
+  }).as('getIngredients');
+  cy.visit('/');
+  cy.wait('@getIngredients');
+});
