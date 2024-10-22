@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "cy": "readonly"
+  },
+  "plugins": ["cypress"],
+  "extends": ["plugin:cypress/recommended"]
+}
