@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import { reqPath } from 'cypress/e2e/utils';
+import { afterAll } from '@jest/globals';
 
 // ***********************************************
 // This example commands.ts shows you how to
