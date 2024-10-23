@@ -80,9 +80,17 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
         Выберите булки
       </div>
     )}
-    <div className={`${styles.total} mt-10 mr-4`}>
+    <div
+      className={`${styles.total} mt-10 mr-4`}
+      data-testid='burger-constructor-submit'
+    >
       <div className={`${styles.cost} mr-10`}>
-        <p className={`text ${styles.text} mr-2`}>{price}</p>
+        <p
+          className={`text ${styles.text} mr-2`}
+          data-testid={'constructor-price'}
+        >
+          {price}
+        </p>
         <CurrencyIcon type='primary' />
       </div>
       <Button

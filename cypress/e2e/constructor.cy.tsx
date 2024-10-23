@@ -11,8 +11,8 @@ describe('проверяем доступность приложения', funct
   });
 });
 
-describe('добавление ингредиентов в конструктор', () => {
-  it('данные с сервера соответсвуют разметке', () => {
+describe('проверяем добавление ингредиентов в конструктор', () => {
+  it('данные с сервера соответствуют разметке', () => {
     //для упрощения, чтобы сразу для первой булки
     const liSelector = testId('burger-item-bun-1');
     const { name, price, image } = ingredientsMockData.data[0];
@@ -33,22 +33,33 @@ describe('добавление ингредиентов в конструкто�
       image
     );
   });
-  it('нажатие на кнопку добавить на ингредиенте булка', () => {
+  it('клик по кнопке "Добавить" должен добавлять булку в конструктор', () => {
     const liSelector = testId('burger-item-bun-1');
-    const { name, price, image } = ingredientsMockData.data[0];
+    const bunFirst = ingredientsMockData.data[0];
+    const bunSecond = ingredientsMockData.data[7];
     //клик по кнопке добавить
     cy.get(`${liSelector} button`).click();
     //проверка что вставляется в конструктор именно то на что мы нажали
     cy.get(
       `${testId('burger-constructor-element-top')} .constructor-element__text`
-    ).should('have.text', `${name} (верх)`);
+    ).should('have.text', `${bunFirst.name} (верх)`);
     cy.get(
       `${testId('burger-constructor-element-bottom')} .constructor-element__text`
-    ).should('have.text', `${name} (низ)`);
+    ).should('have.text', `${bunFirst.name} (низ)`);
+    //проверяем каунтер
+    cy.get('.counter__num').should('have.text', `2`);
+    //проверяем что при нажатии на другую булку в конструкторе заменяется
+    cy.get(`${testId('burger-item-bun-5')} button`).click();
+    cy.get(
+      `${testId('burger-constructor-element-top')} .constructor-element__text`
+    ).should('have.text', `${bunSecond.name} (верх)`);
+    cy.get(
+      `${testId('burger-constructor-element-bottom')} .constructor-element__text`
+    ).should('have.text', `${bunSecond.name} (низ)`);
     //проверяем каунтер
     cy.get('.counter__num').should('have.text', `2`);
   });
-  it('нажатие на кнопку добавить на ингредиенте начинка', () => {
+  it('клик по кнопке "Добавить" должен добавлять соус или начинку в конструктор', () => {
     //для упрощения, чтобы сразу для первой булки
     const liSelector = testId('burger-item-main-2');
     const { name, price, image } = ingredientsMockData.data[1];
@@ -56,10 +67,10 @@ describe('добавление ингредиентов в конструкто�
     cy.get(`${liSelector} button`).click();
     // проверка что вставляется в конструктор именно то на что мы нажали
     cy.get(
-      `${testId('burger-constructor-element')} .constructor-element__text`
+      `${testId('burger-constructor-element-2')} .constructor-element__text`
     ).should('have.text', `${name}`);
     cy.get(
-      `${testId('burger-constructor-element')} .constructor-element__text`
+      `${testId('burger-constructor-element-2')} .constructor-element__text`
     ).should('have.text', `${name}`);
     //проверяем каунтер
     cy.get('.counter__num').should('have.text', `1`);
@@ -70,32 +81,32 @@ describe('добавление ингредиентов в конструкто�
   });
 });
 describe('работа модального окна', () => {
-  it('открытие модального окна', () => {
+  it('при клике на ингредиент должно открываться модальное окно', () => {
     cy.get(`${testId('ingredient-1')}`).click();
-    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get(`${testId('modal')}`).should('be.visible');
   });
-  it('закрытие модального окна по клику на крестик', () => {
+  it('при клике на крестик должно закрываться модальное окно', () => {
     cy.get(`${testId('ingredient-1')}`).click();
-    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
-    cy.get(`${testId('modal-ingredient')} button`).click();
-    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+    cy.get(`${testId('modal')}`).should('be.visible');
+    cy.get(`${testId('modal')} button`).click();
+    cy.get(`${testId('modal')}`).should('not.exist');
   });
-  it('закрытие модального окна по клику на оверлей', () => {
+  it('при клике на оверлей должно закрываться модальное окно', () => {
     cy.get(`${testId('ingredient-1')}`).click();
-    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get(`${testId('modal')}`).should('be.visible');
     cy.get(`${testId('modal-overlay')}`).click({ force: true });
-    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+    cy.get(`${testId('modal')}`).should('not.exist');
   });
-  it('закрытие модального окна по клику на ESC', () => {
+  it('при клике на ESC должно закрываться модальное окно', () => {
     cy.get(`${testId('ingredient-1')}`).click();
-    cy.get(`${testId('modal-ingredient')}`).should('be.visible');
+    cy.get(`${testId('modal')}`).should('be.visible');
     cy.get('body').type('{esc}');
-    cy.get(`${testId('modal-ingredient')}`).should('not.exist');
+    cy.get(`${testId('modal')}`).should('not.exist');
   });
 });
 
 describe('подстановка токена', () => {
-  it('проверка авторизации по токену из куки', () => {
+  it('куки должен корректно добавляется в запрос пользователя', () => {
     cy.setCookie('accessToken', 'my_token');
     cy.intercept('GET', reqPath('/auth/user'), {
       fixture: 'user-success-true.json'
@@ -106,3 +117,44 @@ describe('подстановка токена', () => {
       .should('have.property', 'authorization', 'my_token');
   });
 });
+describe('сборка бургера', () => {
+  it('клик по кнопке "Добавить" должен добавлять ингредиенты в конструктор', () => {
+    cy.get(`${testId('burger-item-bun-1')} button`).click();
+    cy.get(`${testId('burger-item-main-2')} button`).click();
+  });
+  it('клик по корзинке должен удалять начинку или соус из конструктора', () => {
+    cy.get(`${testId('burger-item-bun-1')} button`).click();
+    cy.get(`${testId('burger-item-main-2')} button`).click();
+    cy.get(`${testId('burger-item-sauce-4')} button`).click();
+    cy.get(
+      `${testId('burger-constructor-element-2')} .constructor-element__action`
+    ).click();
+    cy.get(`${testId('burger-constructor-element-2')}`).should('not.exist');
+  });
+  it('корректно отображается сумма заказа', () => {
+    cy.get(`${testId('burger-item-bun-1')} button`).click();
+    cy.get(`${testId('burger-item-main-2')} button`).click();
+    cy.get(testId('constructor-price')).contains(
+      `${ingredientsMockData.data[0].price * 2 + ingredientsMockData.data[1].price}`
+    );
+  });
+});
+// describe('проверка клика по кнопке Оформить заказ', () => {
+//   it('клик по "Оформить заказ"', () => {
+//     //просто по клику модалка не открывается
+//     cy.get(`${testId('burger-constructor-submit')} button`).click();
+//     cy.get(`${testId('modal')}`).should('not.exist');
+//     //авторизируемся
+//     cy.intercept('GET', reqPath('/auth/user'), {
+//       fixture: 'user-success-true.json'
+//     }).as('getUser');
+//     cy.visit('/');
+//     cy.wait('@getUser');
+//     cy.get(`${testId('burger-item-bun-1')} button`).click();
+//     cy.get(`${testId('burger-constructor-submit')} button`).click();
+//     cy.get(`${testId('modal')}`).should('be.visible');
+//     //отправляем на сервер данные по заказу
+//     cy.intercept('POST', reqPath('/orders')).as('orders');
+//     cy.wait('@orders');
+//   });
+// });
