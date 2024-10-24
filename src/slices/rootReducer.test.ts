@@ -11,7 +11,8 @@ test('инициализация rootReducer', () => {
     },
     ingredients: {
       isIngredientsLoading: false,
-      ingredients: []
+      ingredients: [],
+      error: ''
     },
     user: {
       isAuthChecked: false,
