@@ -60,9 +60,6 @@ export const BurgerConstructor: FC = () => {
     );
     return (constructorItems.bun ? constructorItems.bun.price * 2 : 0) + res;
   }, [constructorItems]);
-
-  // return null;
-
   return (
     <BurgerConstructorUI
       price={price}

@@ -12,6 +12,7 @@ export const Feed: FC = () => {
   /** TOD: взять переменную из стора */
   const orders = useSelector(selectOrders);
   const dispatch = useDispatch<AppDispatch>();
+
   if (!orders.length) {
     return <Preloader />;
   }

@@ -49,7 +49,6 @@ const userSlice = createSlice({
       .addCase(getUserApiThunk.rejected, (state) => {
         state.loginUserRequest = false;
         state.isAuthChecked = true;
-        state.isAuthenticated = false;
       })
       .addCase(getUserApiThunk.fulfilled, (state, action) => {
         state.isAuthChecked = true;

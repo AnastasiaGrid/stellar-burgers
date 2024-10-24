@@ -1,8 +1,4 @@
-import {
-  getFeedsApi,
-  getIngredientsApi,
-  refreshToken
-} from '../utils/burger-api';
+import { getIngredientsApi } from '../utils/burger-api';
 import {
   createAsyncThunk,
   createSlice,

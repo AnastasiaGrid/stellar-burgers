@@ -38,7 +38,6 @@ const orderSlice = createSlice({
         state.orderRequest = false;
       })
       .addCase(orderBurgerApiThunk.fulfilled, (state, action) => {
-        state.orderRequest = false;
         state.orderModalData = action.payload.order;
       });
   }

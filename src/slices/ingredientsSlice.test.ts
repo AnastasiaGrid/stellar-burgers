@@ -3,8 +3,7 @@ import { getIngredientsApiThunk } from './ingredientsSlice';
 import reducer from './ingredientsSlice';
 
 describe('тестирование extraReducers', () => {
-  beforeEach(() => {});
-  test('меняется isIngredientsLoading во время ожидания ответа pending', () => {
+  test('[pending] меняется isIngredientsLoading во время ожидания ответа', () => {
     const initialState = {
       isIngredientsLoading: false,
       ingredients: [],
@@ -14,7 +13,21 @@ describe('тестирование extraReducers', () => {
     const newState = reducer(initialState, action);
     expect(newState.isIngredientsLoading).toBe(true);
   });
-  test('меняется isIngredientsLoading после успешного ответа fulfilled и записываются ингредиенты', () => {
+  test('[rejected] меняется isIngredientsLoading и error после отклоненного ответа', () => {
+    const initialState = {
+      isIngredientsLoading: true,
+      ingredients: [],
+      error: ''
+    };
+    const action = { type: getIngredientsApiThunk.rejected.type };
+    const newState = reducer(initialState, action);
+    expect(newState).toEqual({
+      isIngredientsLoading: false,
+      ingredients: [],
+      error: 'Oшибка загрузки ингредиентов'
+    });
+  });
+  test('[fulfilled] меняется isIngredientsLoading после успешного ответа и записываются ингредиенты', () => {
     const initialState = {
       isIngredientsLoading: true,
       ingredients: [],
@@ -61,20 +74,6 @@ describe('тестирование extraReducers', () => {
         }
       ],
       error: ''
-    });
-  });
-  test('меняется isIngredientsLoading и error после отклоненного ответа reject', () => {
-    const initialState = {
-      isIngredientsLoading: true,
-      ingredients: [],
-      error: ''
-    };
-    const action = { type: getIngredientsApiThunk.rejected.type };
-    const newState = reducer(initialState, action);
-    expect(newState).toEqual({
-      isIngredientsLoading: false,
-      ingredients: [],
-      error: 'Oшибка загрузки ингредиентов'
     });
   });
 });
