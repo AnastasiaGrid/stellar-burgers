@@ -1,4 +1,4 @@
-import { getUserApi } from '@api';
+import { getUserApi } from '../utils/burger-api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 
@@ -12,7 +12,6 @@ interface IInitialState {
 const initialState: IInitialState = {
   isAuthChecked: false,
   isAuthenticated: false,
-
   loginUserRequest: false,
   user: {
     email: '',

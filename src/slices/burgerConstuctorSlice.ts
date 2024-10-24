@@ -46,11 +46,32 @@ const burgerConstructorSlice = createSlice({
     },
     deleteConstructorItems: (state) => {
       state.constructorItems = initialState.constructorItems;
+    },
+    changeIndexUp: (state, action: PayloadAction<number>) => {
+      const ingredients: TIngredient[] = state.constructorItems.ingredients;
+      const index: number = action.payload;
+      [ingredients[index], ingredients[`${index - 1}`]] = [
+        ingredients[`${index - 1}`],
+        ingredients[index]
+      ];
+    },
+    changeIndexDown: (state, action: PayloadAction<number>) => {
+      const ingredients: TIngredient[] = state.constructorItems.ingredients;
+      const index: number = action.payload;
+      [ingredients[index], ingredients[`${index + 1}`]] = [
+        ingredients[`${index + 1}`],
+        ingredients[index]
+      ];
     }
   }
 });
 
 export default burgerConstructorSlice.reducer;
 export const { selectConstructorItem } = burgerConstructorSlice.selectors;
-export const { addConstructorItem, deleteIngredients, deleteConstructorItems } =
-  burgerConstructorSlice.actions;
+export const {
+  addConstructorItem,
+  deleteIngredients,
+  deleteConstructorItems,
+  changeIndexUp,
+  changeIndexDown
+} = burgerConstructorSlice.actions;
