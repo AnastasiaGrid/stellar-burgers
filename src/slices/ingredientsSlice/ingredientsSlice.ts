@@ -1,11 +1,11 @@
-import { getIngredientsApi } from '../utils/burger-api';
+import { getIngredientsApi } from '@api';
 import {
   createAsyncThunk,
   createSlice,
   current,
   PayloadAction
 } from '@reduxjs/toolkit';
-import { TIngredient } from '../utils/types';
+import { TIngredient } from '@utils-types';
 
 interface IInitialState {
   isIngredientsLoading: boolean;

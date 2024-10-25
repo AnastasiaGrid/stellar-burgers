@@ -96,7 +96,8 @@
     "format": "prettier ./src --write",
     "build": "webpack --mode=production --node-env=production",
     "test": "jest --verbose",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress": "cypress run --browser chrome"
   },
   "eslintConfig": {
     "extends": [

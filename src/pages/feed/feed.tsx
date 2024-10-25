@@ -4,7 +4,10 @@ import { TOrder } from '@utils-types';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/services/store';
-import { getFeedsApiThunk, selectOrders } from '../../slices/feedSlice';
+import {
+  getFeedsApiThunk,
+  selectOrders
+} from '../../slices/feedSlice/feedSlice';
 import { Outlet } from 'react-router-dom';
 import { getFeedsApi } from '@api';
 

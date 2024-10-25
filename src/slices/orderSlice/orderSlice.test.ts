@@ -21,7 +21,7 @@ describe('тестирование extraReducer', () => {
   });
   test('[fulfilled] добавляются данные заказа после успешного ответа', () => {
     const initialState = {
-      orderRequest: false,
+      orderRequest: true,
       orderModalData: null
     };
     const action = {
@@ -57,30 +57,34 @@ describe('тестирование extraReducer', () => {
       }
     };
     const newState = reducer(initialState, action);
-    expect(newState.orderModalData).toEqual({
-      ingredients: [
-        {
-          _id: '643d69a5c3f7b9001cfa093d',
-          name: 'Флюоресцентная булка R2-D3',
-          type: 'bun',
-          proteins: 44,
-          fat: 26,
-          carbohydrates: 85,
-          calories: 643,
-          price: 988,
-          image: 'https://code.s3.yandex.net/react/code/bun-01.png',
-          image_mobile:
-            'https://code.s3.yandex.net/react/code/bun-01-mobile.png',
-          image_large: 'https://code.s3.yandex.net/react/code/bun-01-large.png',
-          __v: 0
-        }
-      ],
-      _id: '671a436bd829be001c77863d',
-      status: 'done',
-      name: 'Флюоресцентный бургер',
-      createdAt: '2024-10-24T12:54:03.297Z',
-      updatedAt: '2024-10-24T12:54:04.110Z',
-      number: 57375
+    expect(newState).toEqual({
+      orderRequest: false,
+      orderModalData: {
+        ingredients: [
+          {
+            _id: '643d69a5c3f7b9001cfa093d',
+            name: 'Флюоресцентная булка R2-D3',
+            type: 'bun',
+            proteins: 44,
+            fat: 26,
+            carbohydrates: 85,
+            calories: 643,
+            price: 988,
+            image: 'https://code.s3.yandex.net/react/code/bun-01.png',
+            image_mobile:
+              'https://code.s3.yandex.net/react/code/bun-01-mobile.png',
+            image_large:
+              'https://code.s3.yandex.net/react/code/bun-01-large.png',
+            __v: 0
+          }
+        ],
+        _id: '671a436bd829be001c77863d',
+        status: 'done',
+        name: 'Флюоресцентный бургер',
+        createdAt: '2024-10-24T12:54:03.297Z',
+        updatedAt: '2024-10-24T12:54:04.110Z',
+        number: 57375
+      }
     });
   });
 });

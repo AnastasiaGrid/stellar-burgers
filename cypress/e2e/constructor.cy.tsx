@@ -169,7 +169,7 @@ describe('проверка процесса оформления заказа', 
     cy.get(`${testId('modal')}`).should('exist');
     //ответ
     cy.wait('@orders');
-    //проверяем что прелоадера нет
+    // //проверяем что прелоадера нет
     cy.get(`${testId('preloader')}`).should('not.exist');
     //проверяем что номер заказа как в ответе с сервера
     cy.get(`${testId('modal-order-number')}`).should(

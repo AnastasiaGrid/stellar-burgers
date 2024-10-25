@@ -4,7 +4,7 @@ import { ProfileMenuUI } from '@ui';
 import { logoutApi } from '@api';
 import { deleteCookie } from '../../utils/cookie';
 import { useDispatch } from 'react-redux';
-import { deleteUserData } from '../../slices/userSlice';
+import { deleteUserData } from '../../slices/userSlice/userSlice';
 
 export const ProfileMenu: FC = () => {
   const { pathname } = useLocation();

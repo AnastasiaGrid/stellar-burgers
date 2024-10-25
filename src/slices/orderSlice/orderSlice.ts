@@ -1,4 +1,4 @@
-import { orderBurgerApi } from '../utils/burger-api';
+import { orderBurgerApi } from '@api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 import { deflate } from 'zlib';
@@ -39,6 +39,7 @@ const orderSlice = createSlice({
       })
       .addCase(orderBurgerApiThunk.fulfilled, (state, action) => {
         state.orderModalData = action.payload.order;
+        state.orderRequest = false;
       });
   }
 });
