@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { BurgerIngredientUI } from '@ui';
 import { TBurgerIngredientProps } from './type';
 import { useDispatch } from 'react-redux';
-import { addConstructorItem } from '../../slices/burgerConstuctorSlice';
+import { addConstructorItem } from '../../slices/burgerConstructorSlice/burgerConstuctorSlice';
 import { nanoid } from '@reduxjs/toolkit';
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(

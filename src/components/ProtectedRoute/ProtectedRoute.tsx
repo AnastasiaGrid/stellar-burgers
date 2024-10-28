@@ -5,7 +5,7 @@ import {
   selectIsAuthenticated,
   selectLoginUserRequest,
   selectUser
-} from '../../slices/userSlice';
+} from '../../slices/userSlice/userSlice';
 import { Navigate, useLocation, useNavigate } from 'react-router';
 import { Preloader } from '@ui';
 import { log } from 'console';

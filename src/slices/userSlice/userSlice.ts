@@ -12,7 +12,6 @@ interface IInitialState {
 const initialState: IInitialState = {
   isAuthChecked: false,
   isAuthenticated: false,
-
   loginUserRequest: false,
   user: {
     email: '',
@@ -50,7 +49,6 @@ const userSlice = createSlice({
       .addCase(getUserApiThunk.rejected, (state) => {
         state.loginUserRequest = false;
         state.isAuthChecked = true;
-        state.isAuthenticated = false;
       })
       .addCase(getUserApiThunk.fulfilled, (state, action) => {
         state.isAuthChecked = true;

@@ -3,7 +3,7 @@ import { TOrder } from '@utils-types';
 import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/services/store';
-import { selectOrders } from '../../slices/feedSlice';
+import { selectOrders } from '../../slices/feedSlice/feedSlice';
 import { getOrdersApi } from '@api';
 import { log } from 'console';
 import { Outlet } from 'react-router-dom';

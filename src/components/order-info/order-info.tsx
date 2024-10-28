@@ -3,12 +3,14 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useSelector } from 'react-redux';
-import { selectIngredients } from '../../slices/ingredientsSlice';
-import { selectOrders } from '../../slices/feedSlice';
+import { selectIngredients } from '../../slices/ingredientsSlice/ingredientsSlice';
+import { selectOrders } from '../../slices/feedSlice/feedSlice';
 import { useParams } from 'react-router-dom';
+import { selectOrderRequest } from '../../slices/orderSlice/orderSlice';
 
 export const OrderInfo: FC = () => {
   const orders = useSelector(selectOrders);
+  const orderRequest = useSelector(selectOrderRequest);
   const { number } = useParams();
   const orderData = orders.find((item) => item.number.toString() == number);
 
@@ -55,10 +57,17 @@ export const OrderInfo: FC = () => {
       total
     };
   }, [orderData, ingredients]);
-
   if (!orderInfo) {
     return <Preloader />;
   }
 
   return <OrderInfoUI orderInfo={orderInfo} />;
+
+  // if (orderRequest) {
+  //   return <Preloader />;
+  // }
+  //
+  // if (orderInfo) return <OrderInfoUI orderInfo={orderInfo} />;
+  //
+  // return null;
 };

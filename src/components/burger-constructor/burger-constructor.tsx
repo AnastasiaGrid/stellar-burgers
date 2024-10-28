@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteConstructorItems,
   selectConstructorItem
-} from '../../slices/burgerConstuctorSlice';
+} from '../../slices/burgerConstructorSlice/burgerConstuctorSlice';
 import { getCookie } from 'src/utils/cookie';
 import { orderBurgerApi } from '@api';
 import {
@@ -14,9 +14,9 @@ import {
   orderBurgerApiThunk,
   selectOrderModalData,
   selectOrderRequest
-} from '../../slices/orderSlice';
+} from '../../slices/orderSlice/orderSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { selectIsAuthenticated } from '../../slices/userSlice';
+import { selectIsAuthenticated } from '../../slices/userSlice/userSlice';
 
 export const BurgerConstructor: FC = () => {
   const constructorItems = useSelector(selectConstructorItem);
@@ -60,9 +60,6 @@ export const BurgerConstructor: FC = () => {
     );
     return (constructorItems.bun ? constructorItems.bun.price * 2 : 0) + res;
   }, [constructorItems]);
-
-  // return null;
-
   return (
     <BurgerConstructorUI
       price={price}

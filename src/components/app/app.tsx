@@ -24,9 +24,9 @@ import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { AppDispatch } from 'src/services/store';
-import { getFeedsApiThunk } from '../../slices/feedSlice';
-import { getIngredientsApiThunk } from '../../slices/ingredientsSlice';
-import { getUserApiThunk } from '../../slices/userSlice';
+import { getFeedsApiThunk } from '../../slices/feedSlice/feedSlice';
+import { getIngredientsApiThunk } from '../../slices/ingredientsSlice/ingredientsSlice';
+import { getUserApiThunk } from '../../slices/userSlice/userSlice';
 import { Wrapper } from '../wrapper/wrapper';
 
 const App = () => {

@@ -6,7 +6,7 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
-import { selectIsIngredientsLoading } from '../../slices/ingredientsSlice';
+import { selectIsIngredientsLoading } from '../../slices/ingredientsSlice/ingredientsSlice';
 import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
 
